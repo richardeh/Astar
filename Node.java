@@ -1,5 +1,7 @@
 /**
  * Created by Richard H on 8/6/2014.
+ * Pretty straight-forward, the Node class stores a two-variable position and an ID,
+ * and allows the user to set the cost, a parent, and whether the node is reachable.
  */
 public class Node {
     private int cost = Integer.MAX_VALUE;
@@ -57,8 +59,7 @@ public class Node {
     }
 
     public boolean isEqual(Node other){
-        if(this.getX()==other.getX()&&this.getY()==other.getY()) return true;
-        return false;
+        return (this.getX()==other.getX()&&this.getY()==other.getY());
     }
 
     public int getID(){
