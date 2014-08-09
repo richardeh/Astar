@@ -13,12 +13,14 @@ public class Astar {
     private ArrayList<Node> closedList;
     private Path shortestPath;
     private SortedNodeList openList;
+    
     Astar(AreaMap map, AstarHeuristic heuristic){
         this.map = map;
         this.heuristic = heuristic;
 
         closedList = new ArrayList<Node>();
         openList = new SortedNodeList();
+        shortestPath = new Path();
     }
 
     public Path calcShortestPath(int startX, int startY, int goalX, int goalY){
@@ -34,7 +36,7 @@ public class Astar {
         openList.clear();
         openList.add(map.getStartNode());
 
-        while(openList.size() != ){
+        while(openList.size() != 0){
             Node current = openList.getFirst();
 
             if(current.getX() == map.getGoalLocationX() && current.getY() == map.getGoalLocationY()){
@@ -44,13 +46,13 @@ public class Astar {
             openList.remove(current);
             closedList.add(current);
 
-            for(Node neighbor:current.getNeighborList()){
+            for(Node neighbor:current.getAdjacent()){
                 boolean neighborIsBetter;
                 if(closedList.contains(neighbor))
                     continue;
 
                 if(neighbor.isReachable()){
-                    float neighborDistanceToStart = (current.getDistanceFromStart()+map.getDistanceBetween(current,neighbor));
+                    float neighborDistanceToStart = (current.getDistanceFromStart()+map.getDistance(current,neighbor));
 
                     if(!openList.contains(neighbor)){
                         openList.add(neighbor);
@@ -63,7 +65,7 @@ public class Astar {
 
                     if(neighborIsBetter){
                         neighbor.setParent(current);
-                        neighbor.setDistanceToStart(neighborDistanceToStart);
+                        neighbor.setDistanceFromStart(neighborDistanceToStart);
                         neighbor.setDistanceToGoal(heuristic.getEstimatedDistanceToGoal(neighbor.getX(), neighbor.getY(), map.getGoalLocationX(), map.getGoalLocationY()));
                     }
                 }
@@ -108,11 +110,13 @@ public class Astar {
     }
 
     private Path constructPath(Node n){
+        Path p = new Path();
         while(n.getParent() != null){
-            shortestPath.prependWaypoint(n);
+            p.prependWaypoint(n);
             n = n.getParent();
         }
-        return shortestPath;
+        this.shortestPath = p;
+        return this.shortestPath;
     }
     private class SortedNodeList{
         private ArrayList<Node> list = new ArrayList<Node>();

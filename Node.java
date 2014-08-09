@@ -2,16 +2,15 @@ import java.util.ArrayList;
 
 /**
  * Created by Richard H on 8/6/2014.
- * Pretty straight-forward, the Node class stores a two-variable position and an ID,
+ * Pretty straight-forward, the Node class stores a two-variable position,
  * and allows the user to set the cost, a parent, and whether the node is reachable.
  */
 public class Node implements Comparable<Node>{
-    private AreaMap map;
+    AreaMap map;
     private int cost = Integer.MAX_VALUE;
     private int x,y;
     private Node parent = null;
-    private boolean reachable=false;
-    private int id;
+    private boolean reachable;
     Node north;
     Node south;
     Node east;
@@ -35,17 +34,6 @@ public class Node implements Comparable<Node>{
     public Node(int x, int y, int cost){
         this(x,y);
         this.cost = cost;
-    }
-
-    public Node(int x, int y, int cost, Node parent){
-        this(x,y,cost);
-        this.parent = parent;
-    }
-
-    public Node(int x, int y, int cost, boolean isStart, boolean isGoal){
-        this(x,y,cost);
-        this.isStart = isStart;
-        this.isGoal = isGoal;
     }
 
     public ArrayList<Node> getAdjacent(){
@@ -94,6 +82,7 @@ public class Node implements Comparable<Node>{
 
     public void setSouthEast(Node southEast) {
         this.southEast = southEast;
+        adjacent.add(southEast);
     }
 
     public Node getNorth() {
@@ -102,6 +91,7 @@ public class Node implements Comparable<Node>{
 
     public void setNorth(Node north) {
         this.north = north;
+        adjacent.add(north);
     }
 
     public Node getSouth() {
@@ -110,6 +100,7 @@ public class Node implements Comparable<Node>{
 
     public void setSouth(Node south) {
         this.south = south;
+        adjacent.add(south);
     }
 
     public Node getEast() {
@@ -118,6 +109,7 @@ public class Node implements Comparable<Node>{
 
     public void setEast(Node east) {
         this.east = east;
+        adjacent.add(east);
     }
 
     public Node getWest() {
@@ -126,6 +118,7 @@ public class Node implements Comparable<Node>{
 
     public void setWest(Node west) {
         this.west = west;
+        adjacent.add(west);
     }
 
     public Node getNorthWest() {
@@ -134,6 +127,7 @@ public class Node implements Comparable<Node>{
 
     public void setNorthWest(Node northWest) {
         this.northWest = northWest;
+        adjacent.add(northWest);
     }
 
     public Node getNorthEast() {
@@ -142,6 +136,7 @@ public class Node implements Comparable<Node>{
 
     public void setNorthEast(Node northEast) {
         this.northEast = northEast;
+        adjacent.add(northEast);
     }
 
     public Node getSouthWest() {
@@ -150,6 +145,7 @@ public class Node implements Comparable<Node>{
 
     public void setSouthWest(Node southWest) {
         this.southWest = southWest;
+        adjacent.add(southWest);
     }
 
     public boolean isGoal() {
@@ -175,6 +171,7 @@ public class Node implements Comparable<Node>{
     public void setVisited(boolean visited) {
         this.visited = visited;
     }
+
     public float getDistanceFromStart() {
         return distanceFromStart;
     }

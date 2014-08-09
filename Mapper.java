@@ -10,7 +10,7 @@ public class Mapper {
     public static List<Node> path;
     public static List<Node> nodes;
 
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         nodes = constructList();
         pathfinder = new Pathfinder(nodes);
         Node start = nodes.get(0), finish = nodes.get(90);
@@ -63,5 +63,5 @@ public class Mapper {
         Random random = new Random();
         int r = random.nextInt(nodes.size());
         return nodes.get(r).isReachable()?nodes.get(r):getNode();
-    }
+    }*/
 }

@@ -26,8 +26,11 @@ public class AreaMap {
             map.add(new ArrayList<Node>());
             for(int y=0;y<mapHeight;y++){
                 node = new Node(x,y);
-                if(obstacles[x][y]==1)
+                if(obstacles[x][y]==1) {
                     node.setReachable(false);
+                } else{
+                    node.setReachable(true);
+                }
                 map.get(x).add(node);
             }
         }
