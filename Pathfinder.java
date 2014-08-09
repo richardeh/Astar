@@ -5,10 +5,11 @@ import java.util.List;
  * Created by Richard H on 8/6/2014.
  * Use A* algorithm to find a path through a list of nodes from a given source to a given destination
  */
-public class Pathfinder {
+public class Pathfinder implements Search{
     private List<Node> reachable = new ArrayList<Node>();
     private List<Node> visited = new ArrayList<Node>();
     private List<Node> allNodes = new ArrayList<Node>();
+    private Node finish;
 
     public Pathfinder(List<Node> nodes){
         allNodes = nodes;
@@ -17,13 +18,13 @@ public class Pathfinder {
     public List<Node> find(Node start, Node finish){
         // Add the starting node to reachable, and calculate the "crow flight" distance to the finish
         reachable.add(start);
-        int distance = Math.abs(start.getX()+finish.getX())+Math.abs(start.getY()+finish.getY());
+        this.finish = finish;
 
         while(!reachable.isEmpty()){
             // Select a node from the reachable list
             // If we've reached the end, return the list of nodes in our path
             
-            Node node = selectNode(reachable, distance);
+            Node node = selectNode(reachable);
             if(node.isEqual(finish)){
                 return getPath(node);
             }
@@ -45,18 +46,16 @@ public class Pathfinder {
                         reachable.add(n);
                     }
                     if (node.getCost() + 1 <= n.getCost()) {
-
                         n.setParent(node);
                         n.setCost(node.getCost() + 1);
                     }
                 }
             }
         }
-
         return null;
     }
 
-    public Node selectNode(List<Node> nodes, int distance){
+    public Node selectNode(List<Node> nodes){
         // select the best node from the list of available nodes
         int minCost = Integer.MAX_VALUE;
         Node bestNode = null;
@@ -64,6 +63,7 @@ public class Pathfinder {
 
         for(Node n:nodes){
             costToStart = n.getCost();
+            int distance = Math.abs(n.getX()-finish.getX())+Math.abs(n.getY()-finish.getY());
             totalCost = costToStart+distance;
 
             if(minCost>totalCost){
@@ -85,6 +85,12 @@ public class Pathfinder {
         return path;
     }
 
+    public Node getNodeByCoords(int x, int y){
+        for(Node n:allNodes){
+            if(n.getX()==x &&n.getY()==y) return n;
+        }
+        return null;
+    }
     public List<Node> getAdjacent(Node node){
         // From the list of all nodes, find those that are adjacent to the given node
         // TODO: find a way to take the coordinates of a given node, and see if
@@ -100,6 +106,7 @@ public class Pathfinder {
                 nodeY = n.getY();
                 if ((Math.abs(nodeX - x) == 1 && nodeY == y) || (nodeX == x && Math.abs(nodeY - y) == 1)) {
                     adj.add(n);
+                    //if(node.getCost()==n.getCost()||n.getCost()==1) n.setCost(node.getCost()+1);
                 }
             }
         }

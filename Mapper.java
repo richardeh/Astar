@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Richard Harrington on 8/6/2014.
@@ -12,10 +13,11 @@ public class Mapper {
     public static void main(String args[]) {
         nodes = constructList();
         pathfinder = new Pathfinder(nodes);
-        Node start = nodes.get(0), finish = nodes.get(91);
+        Node start = nodes.get(0), finish = nodes.get(90);
         path = pathfinder.find(start, finish);
 
         if (path != null) {
+            System.out.print("Start node: "+start.getID()+" Finish node: "+finish.getID()+"\n");
             String printString = "Final Path\n";
             for (Node n : path) {
                 printString += "Node: " + n.getID() + " Coords: x=" + n.getX() + " y=" + n.getY() + "\n";
@@ -26,7 +28,7 @@ public class Mapper {
         }
     }
 
-    public static List<Node> constructList(){
+    private static List<Node> constructList(){
         List<Node> nodeList = new ArrayList<Node>();
         int i = 1;
 
@@ -57,4 +59,9 @@ public class Mapper {
         return nodeList;
     }
 
+    private static Node getNode(){
+        Random random = new Random();
+        int r = random.nextInt(nodes.size());
+        return nodes.get(r).isReachable()?nodes.get(r):getNode();
+    }
 }
