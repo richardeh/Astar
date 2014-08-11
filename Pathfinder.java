@@ -45,9 +45,9 @@ public class Pathfinder implements Search{
                     if (!reachable.contains(n)&&!visited.contains(n)) {
                         reachable.add(n);
                     }
-                    if (node.getCost() + 1 <= n.getCost()) {
+                    if (node.getCostEstimated() + 1 <= n.getCostEstimated()) {
                         n.setParent(node);
-                        n.setCost(node.getCost() + 1);
+                        n.setCostEstimated(node.getCostEstimated() + 1);
                     }
                 }
             }
@@ -57,12 +57,12 @@ public class Pathfinder implements Search{
 
     public Node selectNode(List<Node> nodes){
         // select the best node from the list of available nodes
-        int minCost = Integer.MAX_VALUE;
+        float minCost = Integer.MAX_VALUE;
         Node bestNode = null;
-        int costToStart = 0, totalCost = 0;
+        float costToStart = 0, totalCost = 0;
 
         for(Node n:nodes){
-            costToStart = n.getCost();
+            costToStart = n.getCostEstimated();
             int distance = Math.abs(n.getX()-finish.getX())+Math.abs(n.getY()-finish.getY());
             totalCost = costToStart+distance;
 

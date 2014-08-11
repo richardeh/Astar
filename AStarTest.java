@@ -5,7 +5,7 @@ public class AStarTest{
 	private static int mapWidth = 20;
 	private static int mapHeight = 20;
 
-	private static int[][] obstacles = {{0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0},
+	private static int[][] obstacles ={{0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0},
                                         {0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0},
 										{0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0},
                                         {0,0,0,0,1,1,0,0,1,0,0,0,0,0,0,1,1,0,0,0},
@@ -27,8 +27,8 @@ public class AStarTest{
                                         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}};
     private static int startX = 0;
     private static int startY = 1;
-    private static int goalX = 19;
-    private static int goalY = 15;
+    private static int goalX =19;
+    private static int goalY = 19;
 
     public static void main(String[] args){
     	AreaMap map = new AreaMap(mapWidth, mapHeight, obstacles);
