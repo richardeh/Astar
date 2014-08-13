@@ -1,3 +1,5 @@
+package unused;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,7 +7,7 @@ import java.util.List;
  * Created by Richard H on 8/6/2014.
  * Use A* algorithm to find a path through a list of nodes from a given source to a given destination
  */
-public class Pathfinder implements Search{
+public class Pathfinder implements Search {
     private List<Node> reachable = new ArrayList<Node>();
     private List<Node> visited = new ArrayList<Node>();
     private List<Node> allNodes = new ArrayList<Node>();

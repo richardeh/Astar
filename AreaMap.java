@@ -22,9 +22,9 @@ public class AreaMap {
     private void createMap(){
         Node node;
         map = new ArrayList<ArrayList<Node>>();
-        for(int x=0;x<mapWidth;x++){
+        for(int x=0;x<mapHeight;x++){
             map.add(new ArrayList<Node>());
-            for(int y=0;y<mapHeight;y++){
+            for(int y=0;y<mapWidth;y++){
                 node = new Node(x,y);
                 if(obstacles[x][y]==1) {
                     node.setReachable(false);

@@ -1,6 +1,6 @@
-import java.util.ArrayList;
+package unused;
+
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Richard Harrington on 8/6/2014.
@@ -12,7 +12,7 @@ public class Mapper {
 
     /*public static void main(String args[]) {
         nodes = constructList();
-        pathfinder = new Pathfinder(nodes);
+        pathfinder = new unused.Pathfinder(nodes);
         Node start = nodes.get(0), finish = nodes.get(90);
         path = pathfinder.find(start, finish);
 

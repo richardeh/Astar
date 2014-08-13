@@ -1,3 +1,5 @@
+package unused;
+
 import heuristics.AstarHeuristic;
 import heuristics.ClosestHeuristic;
 
@@ -31,13 +33,13 @@ public class AStarTest{
     private static int goalY = 19;
 
     public static void main(String[] args){
-    	AreaMap map = new AreaMap(mapWidth, mapHeight, obstacles);
+    	/*AreaMap map = new AreaMap(mapWidth, mapHeight, obstacles);
     	AstarHeuristic heuristic = new ClosestHeuristic();
     	Astar pathFinder = new Astar(map, heuristic);
 
     	pathFinder.calcShortestPath(startX, startY, goalX, goalY);
 
-    	pathFinder.printPath();
+    	pathFinder.printPath();*/
     }
         
 }

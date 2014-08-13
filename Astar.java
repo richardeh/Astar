@@ -59,7 +59,6 @@ public class Astar {
                     float neighborDistance = map.getDistance(map.getGoalNode(),neighbor)+neighbor.getDistanceFromStart();
                     neighbor.setDistanceFromStart(neighborDistance);
                     neighbor.setDistanceToGoal(heuristic.getEstimatedDistanceToGoal(neighbor.getX(), neighbor.getY(), map.getGoalLocationX(), map.getGoalLocationY()));
-                    //neighbor.setCostEstimated(neighbor.getDistanceFromStart()+neighbor.getDistanceToGoal());
 
                     if(!openList.contains(neighbor)){
                         openList.add(neighbor);
@@ -73,8 +72,8 @@ public class Astar {
                     }
 
                 }
+                // printSteps(current);
             }
-            printSteps(current);
         }
 
         return null;
@@ -82,7 +81,7 @@ public class Astar {
     }
     public void printPath(){
         Node node;
-        for(int x=0;x<map.getMapWidth(); x++){
+        for(int x=0;x<map.getMapHeight(); x++){
             if(x==0){
                 for(int i=0;i<map.getMapWidth();i++){
                     System.out.print("-");
@@ -91,7 +90,7 @@ public class Astar {
             }
             System.out.print("|");
 
-            for(int y=0;y<map.getMapHeight();y++){
+            for(int y=0;y<map.getMapWidth();y++){
                 node = map.getNode(x,y);
                 if(!node.isReachable()){
                     System.out.print("X");
@@ -104,7 +103,7 @@ public class Astar {
                 } else {
                     System.out.print("o");
                 }
-                if(y==map.getMapHeight())
+                if(y==map.getMapWidth())
                     System.out.print("_");
             }
             System.out.print("|");
@@ -115,6 +114,7 @@ public class Astar {
     }
 
     public void printSteps(Node current){
+        // This function used only for tracing progress of the calcShortestPath method
         Node node;
         for(int x=0;x<map.getMapWidth(); x++){
             if(x==0){
